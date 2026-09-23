@@ -22,5 +22,5 @@ const identifyUser = require("../middleware/auth.middleware");
 
 postRoute.post("/", upload.single("imgUrl"), identifyUser, postController);
 postRoute.get("/", identifyUser, getPostController);
-
+postRoute.get("/detail/:postID", identifyUser, getPostDetailController);
 module.exports = postRoute;
