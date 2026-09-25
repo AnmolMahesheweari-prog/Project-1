@@ -28,6 +28,7 @@ async function register(req, res) {
   const token = JWT.sign(
     {
       id: user._id,
+      username: user.username,
     },
     process.env.JWT_KEY,
   );
@@ -70,6 +71,7 @@ async function login(req, res) {
   const token = JWT.sign(
     {
       id: user._id,
+      username: user.username,
     },
     process.env.JWT_KEY,
   );
