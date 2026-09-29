@@ -10,6 +10,48 @@ body,
 }
 
 html {
-  background: #000;
+  background: #272626;
   color: whitesmoke;
+}
+
+.main {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-container {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  h1 {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+    min-width: 400px;
+    min-height: 200px;
+
+    input {
+      padding: 10px;
+      border-radius: 4px;
+      border: none;
+    }
+
+    button {
+      width: 70px;
+      background: #0a60a7;
+      color: whitesmoke;
+      border: none;
+      padding: 7px;
+      border-radius: 10px;
+    }
+  }
 }
