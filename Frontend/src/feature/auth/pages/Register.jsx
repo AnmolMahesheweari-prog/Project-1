@@ -1,31 +1,32 @@
 import { useState } from "react";
 import { Link } from "react-router";
-import axios from "axios";
+import { useAuth } from "../Hooks/auth.hooks";
+import "../style/form.scss";
+import { useNavigate } from "react-router";
+
 const Register = () => {
+  const { user, loding, handleRegister } = useAuth();
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function hadlesubmit(e) {
-    e.preventDefault();
+  const navigate = useNavigate();
 
-    axios
-      .post(
-        "http://localhost:3000/api/auth/register",
-        {
-          username,
-          email,
-          password,
-        },
-        {
-          withCredentials: true,
-        },
-      )
-      .then((res) => {
-        console.log(res.data);
-      });
+  async function hadlesubmit(e) {
+    e.preventDefault();
+    await handleRegister(username, email, password);
+    console.log("user register.");
+    navigate("/");
   }
 
+  if (loding) {
+    return (
+      <main>
+        <h1>Loding......</h1>
+      </main>
+    );
+  }
   return (
     <>
       <div className="main">
