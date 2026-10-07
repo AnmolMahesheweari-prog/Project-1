@@ -1,51 +1,40 @@
-import { Link } from "react-router";
-import "../style/form.scss";
-import { useAuth } from "../Hooks/auth.hooks";
-import { useState } from "react";
-import { useNavigate } from "react-router";
+import React, { useState } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 const Login = () => {
-  const { user, loding, handleLogin } = useAuth();
-  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  async function handSubmit(e) {
-    e.preventDefault();
+  const { user, loading, handleLogin } = useAuth();
 
-    await handleLogin(username, password);
-    console.log("user login,,,");
-    navigate("/");
+  async function handleSubmit(e) {
+    e.preventDefault();
   }
 
   return (
     <>
       <div className="main">
         <div className="form-container">
-          <h1>Login</h1>
-          <form onSubmit={handSubmit}>
+          <h1> Login page</h1>
+
+          <form onSubmit={handleSubmit}>
             <input
               onChange={(e) => {
                 setUsername(e.target.value);
               }}
               type="text"
               name="username"
-              placeholder="enter username or email"
+              placeholder="enter username"
             />
-
             <input
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
               type="password"
               name="password"
-              placeholder=" enter passward"
+              placeholder="enter password"
             />
-
-            <button type="submit">Login</button>
-            <p>
-              already have an account <Link to="/register"> Register</Link>
-            </p>
+            <button>Login</button>
           </form>
         </div>
       </div>
