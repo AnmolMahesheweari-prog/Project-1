@@ -1,14 +1,28 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useAuth } from "../hooks/useAuth";
+import { useNavigate } from "react-router";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const { user, handleLogin, loading } = useAuth();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
+    await handleLogin(username, email, password);
+    console.log(user);
+    navigate("/");
   }
 
+  if (loading) {
+    return (
+      <main>
+        <h1>loading...</h1>
+      </main>
+    );
+  }
   return (
     <>
       <div className="main">
@@ -39,6 +53,8 @@ const Register = () => {
               name="password"
               placeholder="enter password"
             />
+
+            <button>Register</button>
           </form>
         </div>
       </div>
