@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router";
+import "../style/form.scss";
 
 const Register = () => {
   const navigate = useNavigate();
