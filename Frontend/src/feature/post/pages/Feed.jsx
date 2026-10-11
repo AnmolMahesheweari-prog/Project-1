@@ -2,8 +2,9 @@ import Posts from "../components/Posts";
 import "../style/feed.scss";
 import { usePost } from "../hooks/usePost";
 import { useEffect } from "react";
+import Navbar from "../components/Navbar";
 
-const Feed = () => {
+function Feed() {
   const { feed, Loading, handleFeed } = usePost();
 
   useEffect(() => {
@@ -21,12 +22,13 @@ const Feed = () => {
   return (
     <>
       <div className="feed">
+        <Navbar />
         {feed.map((post) => {
           return <Posts user={post.user} post={post} />;
         })}
       </div>
     </>
   );
-};
+}
 
 export default Feed;
