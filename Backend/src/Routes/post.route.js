@@ -1,0 +1,31 @@
+// const express = require("express");
+// const postRoute = express.Router();
+// const postController = require("../controllers/post.controller");
+// const multer = require("multer");
+// const upload = multer({ storage: multer.memoryStorage() });
+
+// postRoute.post("/", upload.single("imgUrl"), postController);
+
+// module.exports = postRoute;
+
+const express = require("express");
+const {
+  postController,
+  getPostController,
+  getPostDetailController,
+  likeController,
+  getFeedController,
+} = require("../controllers/post.controller");
+
+const postRoute = express.Router();
+const multer = require("multer");
+const upload = multer({ storage: multer.memoryStorage() });
+const identifyUser = require("../middleware/auth.middleware");
+
+postRoute.post("/", upload.single("imgUrl"), identifyUser, postController);
+postRoute.get("/", identifyUser, getPostController);
+postRoute.get("/detail/:postID", identifyUser, getPostDetailController);
+
+postRoute.post("/like/:postID", identifyUser, likeController);
+postRoute.get("/feed", identifyUser, getFeedController);
+module.exports = postRoute;
