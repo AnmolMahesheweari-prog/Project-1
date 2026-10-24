@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { getFeed, createPost } from "../services/post.api";
+import { getFeed, createPost } from "../services/post.api.jsx";
 import { postContext } from "../post.context";
 
 export const usePost = () => {
